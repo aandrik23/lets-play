@@ -1,0 +1,11 @@
+spring.application.name=letsplay
+
+# MongoDB
+spring.data.mongodb.uri=
+
+# JWT Secret (min 256 bits for HS256)
+jwt.secret=
+jwt.expiration=
+
+# Server port
+server.port=
