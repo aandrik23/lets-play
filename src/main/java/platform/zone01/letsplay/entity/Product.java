@@ -23,6 +23,6 @@ public class Product {
 
     private Double price;
 
-    @Indexed(unique = true)
+    @Indexed
     private String userId;
 }
