@@ -2,7 +2,7 @@ package platform.zone01.letsplay.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import platform.zone01.letsplay.Security.JwtService;
+import platform.zone01.letsplay.security.JwtService;
 import platform.zone01.letsplay.dto.AuthResponseDTO;
 import platform.zone01.letsplay.dto.LoginRequestDTO;
 import platform.zone01.letsplay.dto.RegisterRequestDTO;

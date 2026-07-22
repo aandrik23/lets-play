@@ -1,4 +1,4 @@
-package platform.zone01.letsplay.Security;
+package platform.zone01.letsplay.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

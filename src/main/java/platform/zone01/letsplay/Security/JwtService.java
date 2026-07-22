@@ -1,4 +1,4 @@
-package platform.zone01.letsplay.Security;
+package platform.zone01.letsplay.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
