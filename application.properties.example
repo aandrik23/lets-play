@@ -1,11 +1,12 @@
-spring.application.name=letsplay
+spring.data.mongodb.uri=mongodb+srv://user:password@cluster/dbname
 
-# MongoDB
-spring.data.mongodb.uri=
+jwt.secret=your_256_bit_secret_here
+jwt.expiration=3600000
 
-# JWT Secret (min 256 bits for HS256)
-jwt.secret=
-jwt.expiration=
+server.port=8443
 
-# Server port
-server.port=
+server.ssl.enabled=true
+server.ssl.key-store=classpath:keystore.p12
+server.ssl.key-store-password=your_keystore_password
+server.ssl.key-store-type=PKCS12
+server.ssl.key-alias=letsplay

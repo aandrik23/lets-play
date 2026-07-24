@@ -1,13 +1,14 @@
 package platform.zone01.letsplay.service;
 
+import jakarta.annotation.security.PermitAll;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import platform.zone01.letsplay.dto.ProductRequestDTO;
 import platform.zone01.letsplay.dto.ProductResponseDTO;
 import platform.zone01.letsplay.entity.Product;
-import platform.zone01.letsplay.enums.Role;
 import platform.zone01.letsplay.exception.ProductNotFoundException;
 import platform.zone01.letsplay.repository.ProductRepository;
 
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@EnableMethodSecurity
 public class ProductService {
 
     private final ProductRepository productRepository;
@@ -23,6 +25,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    @PermitAll
     public List<ProductResponseDTO> getAllProducts() {
         return  productRepository.findAll().stream()
                 .map(this::toDTO)
@@ -57,11 +60,9 @@ public class ProductService {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = auth.getName();
-        boolean isAdmin = auth.getAuthorities().stream()
-                .anyMatch(a -> a.getAuthority().equals("ROLE_" + Role.ADMIN.name()));
 
-        if (product.getUserId().equals(userId) && !isAdmin) {
-            throw new AccessDeniedException("Access denied");
+        if (product.getUserId().equals(userId)) {
+            throw new AccessDeniedException("You can only edit products that belong to you.");
         }
 
         product.setName(request.getName());
@@ -78,11 +79,9 @@ public class ProductService {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = auth.getName();
-        boolean isAdmin = auth.getAuthorities().stream()
-                .anyMatch(a -> a.getAuthority().equals("ROLE_" + Role.ADMIN.name()));
 
-        if (product.getUserId().equals(userId) && !isAdmin) {
-            throw new AccessDeniedException("Access denied");
+        if (product.getUserId().equals(userId)) {
+            throw new AccessDeniedException("You can only delete products that belong to you.");
         }
 
         productRepository.delete(product);

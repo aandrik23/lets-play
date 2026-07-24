@@ -5,6 +5,9 @@ target/
 !**/src/test/**/target/
 src/main/resources/application.properties
 
+*.pk12
+*.jks
+
 ### STS ###
 .apt_generated
 .classpath
