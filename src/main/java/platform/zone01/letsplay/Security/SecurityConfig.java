@@ -37,6 +37,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(registry -> {
                 registry.requestMatchers("/auth/**").permitAll();
                 registry.requestMatchers(HttpMethod.GET, "/products/**").permitAll();
+                registry.requestMatchers("/users/**").hasRole("ADMIN");
                 registry.anyRequest().authenticated();
             })
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
