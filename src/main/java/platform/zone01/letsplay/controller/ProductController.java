@@ -1,10 +1,10 @@
 package platform.zone01.letsplay.controller;
 
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import platform.zone01.letsplay.dto.ProductRequestDTO;
 import platform.zone01.letsplay.dto.ProductResponseDTO;
 import platform.zone01.letsplay.service.ProductService;
 
@@ -33,4 +33,21 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
+    @PostMapping("")
+    public ResponseEntity<ProductResponseDTO> saveProduct(@Valid @RequestBody ProductRequestDTO request) {
+        ProductResponseDTO response = productService.saveProduct(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductResponseDTO> updateProduct(@PathVariable String id, @Valid @RequestBody ProductRequestDTO request) {
+        ProductResponseDTO response = productService.updateProduct(id, request);
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable String id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
+    }
 }
