@@ -12,6 +12,7 @@ import lombok.Setter;
 @Getter
 public class RegisterRequestDTO {
     @NotBlank(message = "Name is required")
+    @Pattern(regexp = "^[a-zA-Z0-9 ]*$")
     private String name;
 
     @NotBlank(message = "Email is required")

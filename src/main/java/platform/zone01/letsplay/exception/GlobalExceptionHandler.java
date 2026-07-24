@@ -41,4 +41,9 @@ public class GlobalExceptionHandler {
         ErrorResponseDTO body = new ErrorResponseDTO(status.value(), status.getReasonPhrase(), message, request.getRequestURI());
         return ResponseEntity.status(status).body(body);
     }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<ErrorResponseDTO> handleProductNotFound(ProductNotFoundException ex, HttpServletRequest request) {
+        return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage(), request);
+    }
 }
