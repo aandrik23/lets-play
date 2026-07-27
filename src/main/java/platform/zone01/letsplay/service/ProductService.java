@@ -61,7 +61,7 @@ public class ProductService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = auth.getName();
 
-        if (product.getUserId().equals(userId)) {
+        if (!product.getUserId().equals(userId)) {
             throw new AccessDeniedException("You can only edit products that belong to you.");
         }
 
@@ -80,7 +80,7 @@ public class ProductService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = auth.getName();
 
-        if (product.getUserId().equals(userId)) {
+        if (!product.getUserId().equals(userId)) {
             throw new AccessDeniedException("You can only delete products that belong to you.");
         }
 
