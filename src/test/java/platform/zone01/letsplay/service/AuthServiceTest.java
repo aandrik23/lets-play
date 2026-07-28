@@ -5,8 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.junit.jupiter.MockitoSettings;
-import org.mockito.quality.Strictness;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import platform.zone01.letsplay.dto.AuthResponseDTO;
 import platform.zone01.letsplay.dto.LoginRequestDTO;
 import platform.zone01.letsplay.dto.RegisterRequestDTO;
@@ -17,7 +16,6 @@ import platform.zone01.letsplay.exception.EmailAlreadyExistsException;
 import platform.zone01.letsplay.exception.InvalidCredentialsException;
 import platform.zone01.letsplay.repository.UserRepository;
 import platform.zone01.letsplay.security.JwtService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
